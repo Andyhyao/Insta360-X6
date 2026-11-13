@@ -1,0 +1,7 @@
+/* Tailwind theme + utilities only (no preflight), so the existing design system styles stay intact */
+@layer theme, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@source "./";
+
+@import "./styles.css";
