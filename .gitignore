@@ -20,3 +20,4 @@ npm-debug.log*
 # Local tool state
 .impeccable/
 .claude/
+dist-ssr/

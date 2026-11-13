@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { CountUp, fadeUp } from '../motion.jsx';
 
 const SPECS = [
@@ -12,7 +12,7 @@ const SPECS = [
 export default function Rail() {
   return (
     <section className="x6-rail" aria-label="Key specifications">
-      <motion.div
+      <m.div
         className="x6-rail-inner"
         initial="hidden"
         whileInView="show"
@@ -20,13 +20,13 @@ export default function Rail() {
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09 } } }}
       >
         {SPECS.map((s) => (
-          <motion.div key={s.label} className="x6-spec" variants={fadeUp}>
+          <m.div key={s.label} className="x6-spec" variants={fadeUp}>
             <div className="x6-mono" style={{ fontSize: 11, letterSpacing: '.16em', color: '#8B95A3' }}>{s.label}</div>
             <div style={{ marginTop: 10, fontSize: 30, fontWeight: 700, letterSpacing: '-0.01em', color: '#F5F7FA', fontVariantNumeric: 'tabular-nums' }}>{s.value}</div>
             <div style={{ marginTop: 6, fontSize: 14, lineHeight: 1.5, color: '#A9B2BF' }}>{s.note}</div>
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
     </section>
   );
 }

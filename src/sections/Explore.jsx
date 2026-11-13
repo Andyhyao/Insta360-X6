@@ -1,21 +1,21 @@
-import { motion } from 'framer-motion';
-import { StaggerText, Carousel, MotionCard, group, fadeUp, rows, rowIn } from '../motion.jsx';
+import { m } from 'framer-motion';
+import { StaggerText, Carousel, MotionCard, group, fadeUp } from '../motion.jsx';
 
 export default function Explore() {
   return (
 <section className="x6-s5" id="explore" aria-labelledby="x6-s5-title">
-<motion.div className="x6-s2-head" style={{ maxWidth: "1200px" }} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }} variants={group}>
-<motion.div className="x6-mono" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", fontSize: "12px", fontWeight: "500", letterSpacing: ".18em", color: "#A9B2BF" }} variants={fadeUp}>
+<m.div className="x6-s2-head" style={{ maxWidth: "1200px" }} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }} variants={group}>
+<m.div className="x6-mono" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", fontSize: "12px", fontWeight: "500", letterSpacing: ".18em", color: "#A9B2BF" }} variants={fadeUp}>
 <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#1F6BFF", boxShadow: "0 0 10px #1F6BFF" }}></span>
 <span>05 / BUILT TO EXPLORE</span>
-</motion.div>
+</m.div>
 <StaggerText as="h2" id="x6-s5-title" className="x6-h2" style={{ margin: "22px 0 0", fontWeight: "700", letterSpacing: "-0.028em", lineHeight: "1.05" }} segments={[{"t": "Keep Shooting.", "c": "#F5F7FA", "block": false}, {"t": "Go Anywhere.", "c": "#7F8B9D", "block": false}]} />
-<motion.p style={{ margin: "20px auto 0", maxWidth: "600px", fontSize: "18px", lineHeight: "1.6", color: "#B3BCC8" }} variants={fadeUp}>A camera built for the places worth remembering.</motion.p>
-</motion.div>
+<m.p style={{ margin: "20px auto 0", maxWidth: "600px", fontSize: "18px", lineHeight: "1.6", color: "#B3BCC8" }} variants={fadeUp}>A camera built for the places worth remembering.</m.p>
+</m.div>
 <Carousel className="x6-s4-grid" id="x6-car-explore">
 <MotionCard className="x6-ai-card x6-batt-card" as="article">
 <div className="x6-ai-media" style={{ right: "-110px" }}>
-<img src="/assets/1b5248c529ddd34a9b93932c46118a3d.png" alt="Mountain ridge in morning light" width="404" height="297" style={{ width: "404px", height: "auto", aspectRatio: "404 / 297" }} />
+<img loading="lazy" decoding="async" src="/assets/1b5248c529ddd34a9b93932c46118a3d.webp" alt="Mountain ridge in morning light" width="404" height="297" style={{ width: "404px", height: "auto", aspectRatio: "404 / 297" }} />
 </div>
 <div className="x6-ai-scrim"></div>
 <div className="x6-ai-text" style={{ maxWidth: "300px" }}>
@@ -33,12 +33,12 @@ export default function Explore() {
 </MotionCard>
 <MotionCard className="x6-ai-card" as="article">
 <div className="x6-ai-media" style={{ right: "-210px" }}>
-<img src="/assets/b5bdd5cc87de533a6319f4f400e8f7f0.jpg" alt="" style={{ transform: "scaleX(-1)" }} />
+<img loading="lazy" decoding="async" src="/assets/b5bdd5cc87de533a6319f4f400e8f7f0.jpg" alt="" style={{ transform: "scaleX(-1)" }} />
 </div>
 <div className="x6-ai-scrim"></div>
 <div className="x6-art" aria-hidden="true">
 <div style={{ position: "absolute", left: "70px", top: "60px", width: "190px", height: "190px", borderRadius: "50%", background: "radial-gradient(circle,#1F6BFF 0%,rgba(11,16,24,0) 68%)", opacity: ".55" }}></div>
-<img src="/assets/03c292d03785acdafa287a0fb2d38317.png" alt="" style={{ position: "absolute", right: "22px", top: "48px", height: "210px", width: "auto", transform: "rotate(-12deg)", filter: "drop-shadow(0 18px 24px rgba(0,0,0,.6))" }} />
+<img loading="lazy" decoding="async" src="/assets/03c292d03785acdafa287a0fb2d38317.webp" alt="" style={{ position: "absolute", right: "22px", top: "48px", height: "210px", width: "auto", transform: "rotate(-12deg)", filter: "drop-shadow(0 18px 24px rgba(0,0,0,.6))" }} />
 </div>
 <div className="x6-ai-text" style={{ maxWidth: "300px" }}>
 <h3 style={{ margin: "0", fontSize: "26px", fontWeight: "700", letterSpacing: "-0.02em", lineHeight: "1.1", color: "#F5F7FA" }}>Tough Anywhere</h3>
@@ -54,7 +54,7 @@ export default function Explore() {
 <div style={{ position: "absolute", top: "0", left: "0", right: "0", bottom: "0", background: "rgba(11,16,24,.7)" }}></div>
 <div className="x6-art" aria-hidden="true">
 <div style={{ boxSizing: "border-box", position: "absolute", left: "56px", top: "56px", width: "81px", height: "84px", display: "none" }}><i className="x6-disc" style={{ left: "63px", top: "0px", width: "18px", height: "84px", boxShadow: "0 0 14px #1F6BFF" }}></i><i className="x6-disc" style={{ left: "40px", top: "6px", width: "16px", height: "72px", boxShadow: "0 0 14px #1F6BFF" }}></i><i className="x6-disc" style={{ left: "19px", top: "11px", width: "14px", height: "62px", boxShadow: "0 0 14px #1F6BFF" }}></i><i className="x6-disc" style={{ left: "0px", top: "16px", width: "12px", height: "52px", boxShadow: "0 0 14px #1F6BFF" }}></i></div>
-<img src="/assets/lens-kit.webp" alt="" style={{ position: "absolute", right: "-38px", top: "84px", height: "230px", width: "auto", transform: "rotate(-8deg)", filter: "drop-shadow(0 20px 28px rgba(0,0,0,.65))" }} />
+<img loading="lazy" decoding="async" src="/assets/lens-kit.webp" alt="" style={{ position: "absolute", right: "-38px", top: "84px", height: "230px", width: "auto", transform: "rotate(-8deg)", filter: "drop-shadow(0 20px 28px rgba(0,0,0,.65))" }} />
 </div>
 <div className="x6-ai-text">
 <h3 style={{ margin: "0", fontSize: "26px", fontWeight: "700", letterSpacing: "-0.02em", lineHeight: "1.1", color: "#F5F7FA" }}>Replaceable<br />Lenses 2.0</h3>

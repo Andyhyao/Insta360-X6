@@ -1,7 +1,7 @@
 import { Children, Fragment, useEffect, useRef, useState } from 'react';
 import {
   animate,
-  motion,
+  m,
   useInView,
   useMotionValue,
   useReducedMotion,
@@ -61,7 +61,7 @@ export function StaggerText({
   style,
   ...rest
 }) {
-  const Tag = motion[as];
+  const Tag = m[as];
   const label = segments.map((s) => s.t).join(' ');
   const trigger = animateOnMount
     ? { initial: 'hidden', animate: 'show' }
@@ -88,9 +88,9 @@ export function StaggerText({
               {words.map((w, wi) => (
                 <span key={wi}>
                   <span className="inline-block overflow-hidden align-bottom pb-[0.12em] -mb-[0.12em]">
-                    <motion.span className="inline-block will-change-transform" variants={word}>
+                    <m.span className="inline-block will-change-transform" variants={word}>
                       {w}
-                    </motion.span>
+                    </m.span>
                   </span>
                   {wi < words.length - 1 ? ' ' : null}
                 </span>
@@ -106,7 +106,7 @@ export function StaggerText({
 
 /* ---------- MotionCard: staggered entrance + hover lift + pointer tilt ---------- */
 export function MotionCard({ as = 'article', className, style, children, ...rest }) {
-  const Tag = motion[as];
+  const Tag = m[as];
   const ref = useRef(null);
   const reduce = useReducedMotion();
   const rx = useSpring(0, { stiffness: 220, damping: 22 });
@@ -163,7 +163,7 @@ export function Carousel({ className, style, id, children }) {
 
   return (
     <>
-      <motion.div
+      <m.div
         ref={ref}
         id={id}
         className={className}
@@ -175,7 +175,7 @@ export function Carousel({ className, style, id, children }) {
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
       >
         {children}
-      </motion.div>
+      </m.div>
       <div className="x6-dots" role="group" aria-label="Choose a card">
         {Array.from({ length: count }, (_, i) => (
           <button
@@ -186,7 +186,7 @@ export function Carousel({ className, style, id, children }) {
             aria-current={i === current ? 'true' : 'false'}
             onClick={() => go(i)}
           >
-            <motion.span
+            <m.span
               className="block h-1.5 rounded-full"
               initial={false}
               animate={{
@@ -218,8 +218,8 @@ export function CountUp({ to, prefix = '', suffix = '', duration = 1.6 }) {
   }, [inView, reduce, to, duration, value]);
 
   return (
-    <motion.span ref={ref} aria-label={`${prefix}${to}${suffix}`}>
+    <m.span ref={ref} aria-label={`${prefix}${to}${suffix}`} suppressHydrationWarning>
       {text}
-    </motion.span>
+    </m.span>
   );
 }

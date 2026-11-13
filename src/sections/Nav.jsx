@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, m, useMotionValueEvent, useScroll } from 'framer-motion';
 import { ACCENT, EASE } from '../motion.jsx';
 
 const LINKS = [
@@ -16,9 +16,27 @@ export default function Nav() {
   const [solid, setSolid] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, 'change', (y) => setSolid(y > 40));
+  const burgerRef = useRef(null);
+  const menuRef = useRef(null);
+
+  // Keyboard support for the phone menu: focus the first link on open,
+  // close on Escape and hand focus back to the menu button.
+  useEffect(() => {
+    if (!open) return undefined;
+    const first = menuRef.current && menuRef.current.querySelector('a');
+    if (first) first.focus();
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setOpen(false);
+        if (burgerRef.current) burgerRef.current.focus();
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
 
   return (
-    <motion.header
+    <m.header
       className={`x6-nav${solid ? ' x6-nav--solid' : ''}`}
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -43,7 +61,7 @@ export default function Nav() {
         </div>
         <div className="x6-nav-right">
           <a className="x6-compare" href="#specs" style={{ fontSize: 14, color: '#C3CAD4' }}>Compare</a>
-          <motion.a
+          <m.a
             className="x6-nav-buy"
             href="#buy"
             whileHover={{ scale: 1.04 }}
@@ -51,8 +69,9 @@ export default function Nav() {
             style={{ display: 'inline-flex', alignItems: 'center', height: 44, padding: '0 20px', borderRadius: 999, background: ACCENT, color: '#FFFFFF', fontSize: 14, fontWeight: 600 }}
           >
             Buy Now
-          </motion.a>
+          </m.a>
           <button
+            ref={burgerRef}
             className="x6-burger"
             type="button"
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -62,12 +81,12 @@ export default function Nav() {
             style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', background: 'transparent', border: '1px solid rgba(255,255,255,.2)', borderRadius: 999, color: '#FFFFFF', cursor: 'pointer' }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
-              <motion.path
+              <m.path
                 initial={false}
                 animate={{ d: open ? 'M6 6L18 18' : 'M4 8L20 8' }}
                 transition={{ duration: 0.3, ease: EASE }}
               />
-              <motion.path
+              <m.path
                 initial={false}
                 animate={{ d: open ? 'M18 6L6 18' : 'M4 16L20 16' }}
                 transition={{ duration: 0.3, ease: EASE }}
@@ -79,7 +98,8 @@ export default function Nav() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
+            ref={menuRef}
             className="x6-mmenu"
             id="x6-mobile-menu"
             initial={{ opacity: 0, y: -12 }}
@@ -87,14 +107,14 @@ export default function Nav() {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.35, ease: EASE }}
           >
-            <motion.nav
+            <m.nav
               aria-label="Mobile"
               initial="hidden"
               animate="show"
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.05 } } }}
             >
               {LINKS.map(([label, href, num]) => (
-                <motion.a
+                <m.a
                   key={label}
                   className="x6-mlink"
                   href={href}
@@ -103,9 +123,9 @@ export default function Nav() {
                 >
                   {label}
                   <span className="x6-mono" style={{ fontSize: 11, letterSpacing: '.14em', color: '#8B95A3' }}>{num}</span>
-                </motion.a>
+                </m.a>
               ))}
-            </motion.nav>
+            </m.nav>
             <a
               href="#buy"
               onClick={() => setOpen(false)}
@@ -114,9 +134,9 @@ export default function Nav() {
               Buy Now
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </a>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </m.header>
   );
 }

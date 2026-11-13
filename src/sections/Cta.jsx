@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ACCENT, EASE, StaggerText, fadeUp, group } from '../motion.jsx';
 
 export default function Cta() {
@@ -12,14 +12,14 @@ export default function Cta() {
   return (
     <section ref={ref} className="x6-s9" id="buy" aria-labelledby="x6-s9-title">
       <div className="x6-s9-hero">
-        <motion.img
+        <m.img loading="lazy" decoding="async"
           src="/assets/s9-sunset.webp"
           alt=""
           style={{ scale: bgScale, y: reduce ? 0 : bgY }}
         />
         <div className="x6-s9-scrim" />
-        <motion.p className="x6-script" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={{ hidden: {}, show: {} }}>
-          <motion.span
+        <m.p className="x6-script" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={{ hidden: {}, show: {} }}>
+          <m.span
             className="block"
             variants={{
               hidden: { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
@@ -27,9 +27,9 @@ export default function Cta() {
             }}
           >
             Your World.<br />Fully Captured.
-          </motion.span>
-        </motion.p>
-        <motion.div
+          </m.span>
+        </m.p>
+        <m.div
           className="x6-s9-cta"
           initial="hidden"
           whileInView="show"
@@ -43,10 +43,10 @@ export default function Cta() {
             style={{ margin: 0, fontWeight: 700, letterSpacing: '-0.028em', lineHeight: 1.05, color: '#FFFFFF' }}
             segments={[{ t: 'Insta360 X6' }]}
           />
-          <motion.p variants={fadeUp} style={{ margin: '14px 0 0', fontSize: 20, lineHeight: 1.5, color: '#E3E8EF' }}>
+          <m.p variants={fadeUp} style={{ margin: '14px 0 0', fontSize: 20, lineHeight: 1.5, color: '#E3E8EF' }}>
             Capture Everything. Go Anywhere.
-          </motion.p>
-          <motion.a
+          </m.p>
+          <m.a
             href="https://www.insta360.com/product/insta360-x6"
             target="_blank"
             rel="noopener noreferrer"
@@ -57,12 +57,12 @@ export default function Cta() {
           >
             Buy Now
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-          </motion.a>
-          <motion.a className="x6-ai-link" href="#overview" variants={fadeUp} style={{ marginTop: 10 }}>
+          </m.a>
+          <m.a className="x6-ai-link" href="#overview" variants={fadeUp} style={{ marginTop: 10 }}>
             Learn more{' '}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-          </motion.a>
-        </motion.div>
+          </m.a>
+        </m.div>
       </div>
     </section>
   );

@@ -1,9 +1,8 @@
-import { motion } from 'framer-motion';
-import { StaggerText, Carousel, MotionCard, group, fadeUp, rows, rowIn } from '../motion.jsx';
+import { m } from 'framer-motion';
 
 export default function Footer() {
   return (
-<motion.footer className="x6-foot" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1 }}>
+<m.footer className="x6-foot" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1 }}>
 <div className="x6-foot-inner">
 <a href="#top" style={{ display: "flex", alignItems: "center", gap: "10px", color: "#FFFFFF", minHeight: "44px" }}>
 <span style={{ fontSize: "19px", fontWeight: "700", letterSpacing: "-0.01em" }}>Insta360</span>
@@ -28,6 +27,6 @@ export default function Footer() {
 <span>© 2026 INSTA360 X6 · CONCEPT REDESIGN</span>
 <span>NOT AN OFFICIAL INSTA360 PAGE</span>
 </div>
-</motion.footer>
+</m.footer>
   );
 }

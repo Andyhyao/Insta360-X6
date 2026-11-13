@@ -1,42 +1,42 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { StaggerText, Carousel, MotionCard, group, fadeUp, rows, rowIn } from '../motion.jsx';
 
 export default function Specs() {
   return (
 <section className="x6-s8" id="specs" aria-labelledby="x6-s8-title">
-<motion.div className="x6-s2-head" style={{ maxWidth: "1200px" }} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }} variants={group}>
-<motion.div className="x6-mono" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", fontSize: "12px", fontWeight: "500", letterSpacing: ".18em", color: "#A9B2BF" }} variants={fadeUp}>
+<m.div className="x6-s2-head" style={{ maxWidth: "1200px" }} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }} variants={group}>
+<m.div className="x6-mono" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", fontSize: "12px", fontWeight: "500", letterSpacing: ".18em", color: "#A9B2BF" }} variants={fadeUp}>
 <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#1F6BFF", boxShadow: "0 0 10px #1F6BFF" }}></span>
 <span>08 / WHY CHOOSE X6</span>
-</motion.div>
+</m.div>
 <StaggerText as="h2" id="x6-s8-title" className="x6-h2" style={{ margin: "22px 0 0", fontWeight: "700", letterSpacing: "-0.028em", lineHeight: "1.05" }} segments={[{"t": "Why", "c": "#F5F7FA", "block": false}, {"t": "X6?", "c": "#7F8B9D", "block": false}]} />
-<motion.p style={{ margin: "20px auto 0", maxWidth: "600px", fontSize: "18px", lineHeight: "1.6", color: "#B3BCC8" }} variants={fadeUp}>A massive leap in every way.</motion.p>
-</motion.div>
+<m.p style={{ margin: "20px auto 0", maxWidth: "600px", fontSize: "18px", lineHeight: "1.6", color: "#B3BCC8" }} variants={fadeUp}>A massive leap in every way.</m.p>
+</m.div>
 <div className="x6-s8-grid">
-<motion.div className="x6-box x6-why" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+<m.div className="x6-box x6-why" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
 <div className="x6-why-media">
-<img src="/assets/379b03a88a22dd0b14a3b55810904e93.png" alt="Insta360 X6 front and back above a mountain summit" style={{ objectPosition: "47% 50%", width: "281px", height: "auto", aspectRatio: "281 / 460" }} width="281" height="460" />
+<img loading="lazy" decoding="async" src="/assets/379b03a88a22dd0b14a3b55810904e93.webp" alt="Insta360 X6 front and back above a mountain summit" style={{ objectPosition: "47% 50%", width: "281px", height: "auto", aspectRatio: "281 / 460" }} width="281" height="460" />
 </div>
 <div className="x6-why-table">
 <table className="x6-spec-table">
 <caption className="x6-sr">Insta360 X6 key specifications</caption>
 <thead><tr><th scope="col">FEATURE</th><th scope="col">X6</th></tr></thead>
-<motion.tbody initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={rows}>
-<motion.tr variants={rowIn}><th scope="row">360 Video</th><td>8K 30fps</td></motion.tr>
-<motion.tr variants={rowIn}><th scope="row">Sensor</th><td>Dual Sony 1/1.7"</td></motion.tr>
-<motion.tr variants={rowIn}><th scope="row">360 Photo</th><td>120MP</td></motion.tr>
-<motion.tr variants={rowIn}><th scope="row">Flat Video</th><td>5K60 / 4K120</td></motion.tr>
-<motion.tr variants={rowIn}><th scope="row">Battery</th><td>140 min @ 8K30</td></motion.tr>
-<motion.tr variants={rowIn}><th scope="row">Display</th><td>2.3" OLED</td></motion.tr>
-<motion.tr variants={rowIn}><th scope="row">Color</th><td>10-bit + H-Log / Dolby Vision</td></motion.tr>
-<motion.tr variants={rowIn}><th scope="row">Lens</th><td>Replaceable Lens 2.0</td></motion.tr>
-<motion.tr variants={rowIn}><th scope="row">AI</th><td>InstaFrame 2.0 + AI Director</td></motion.tr>
-<motion.tr variants={rowIn}><th scope="row">Waterproof</th><td>20m (60m with Dive Case)</td></motion.tr>
-</motion.tbody>
+<m.tbody initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={rows}>
+<m.tr variants={rowIn}><th scope="row">360 Video</th><td>8K 30fps</td></m.tr>
+<m.tr variants={rowIn}><th scope="row">Sensor</th><td>Dual Sony 1/1.7"</td></m.tr>
+<m.tr variants={rowIn}><th scope="row">360 Photo</th><td>120MP</td></m.tr>
+<m.tr variants={rowIn}><th scope="row">Flat Video</th><td>5K60 / 4K120</td></m.tr>
+<m.tr variants={rowIn}><th scope="row">Battery</th><td>140 min @ 8K30</td></m.tr>
+<m.tr variants={rowIn}><th scope="row">Display</th><td>2.3" OLED</td></m.tr>
+<m.tr variants={rowIn}><th scope="row">Color</th><td>10-bit + H-Log / Dolby Vision</td></m.tr>
+<m.tr variants={rowIn}><th scope="row">Lens</th><td>Replaceable Lens 2.0</td></m.tr>
+<m.tr variants={rowIn}><th scope="row">AI</th><td>InstaFrame 2.0 + AI Director</td></m.tr>
+<m.tr variants={rowIn}><th scope="row">Waterproof</th><td>20m (60m with Dive Case)</td></m.tr>
+</m.tbody>
 </table>
 </div>
-</motion.div>
-<motion.div className="x6-box x6-acc" id="accessories" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} transition={{ delay: 0.12 }}>
+</m.div>
+<m.div className="x6-box x6-acc" id="accessories" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} transition={{ delay: 0.12 }}>
 <div className="x6-acc-head">
 <div>
 <h3 style={{ margin: "0", fontSize: "24px", fontWeight: "700", letterSpacing: "-0.02em", lineHeight: "1.15", color: "#F5F7FA" }}>Build Your X6</h3>
@@ -71,7 +71,7 @@ export default function Specs() {
 </MotionCard>
 </Carousel>
 
-</motion.div>
+</m.div>
 </div>
 </section>
   );

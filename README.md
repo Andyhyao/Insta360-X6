@@ -17,8 +17,12 @@ Then open http://localhost:3000
 | Command           | What it does                                   |
 | ----------------- | ---------------------------------------------- |
 | `npm run dev`     | Dev server on port 3000 with hot reload        |
-| `npm run build`   | Production build into `dist/`                  |
+| `npm run build`   | Production build into `dist/`, with the page HTML pre-rendered |
 | `npm run preview` | Serves the `dist/` build on port 3000          |
+| `npm run lint`    | ESLint (React hooks rules, unused code)        |
+
+The build pre-renders the page (`src/entry-server.jsx` + `scripts/prerender.mjs`) so the
+hero paints before the JavaScript loads; the browser then hydrates it.
 
 ## Motion system (`src/motion.jsx`)
 
@@ -42,4 +46,6 @@ Respects the OS "Reduce motion" setting (`MotionConfig reducedMotion="user"`).
 - `src/sections/*.jsx` — one component per section
 - `src/motion.jsx` — shared motion components and variants
 - `src/styles.css` — the design system styles; `src/index.css` adds Tailwind (no preflight)
-- `public/assets/` — images
+- `public/assets/` — images (WebP; `hero-1080.webp` is the phone-size hero)
+- `public/` — favicon, touch icon, Open Graph image, robots.txt
+- `scripts/prerender.mjs`, `src/entry-server.jsx` — build-time pre-rendering

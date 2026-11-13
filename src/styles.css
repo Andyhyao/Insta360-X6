@@ -241,7 +241,7 @@ section[id],div[id]{scroll-margin-top:68px}
 .x6-foot{background:#05070B;border-top:1px solid rgba(255,255,255,.08)}
 .x6-foot-inner{max-width:1440px;margin:0 auto;padding:26px 56px 14px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:20px 40px;flex-wrap:wrap}
 .x6-foot-links{display:flex;flex-wrap:wrap;gap:8px 36px}
-.x6-foot-links a{font-size:14px;color:#C3CAD4;padding:12px 0}
+.x6-foot-links a{font-size:14px;color:#C3CAD4;padding:14px 0}
 .x6-foot-links a:hover{color:#FFFFFF}
 .x6-social{display:flex;gap:2px}
 .x6-social a{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;color:#C3CAD4;transition:background .3s ease,color .3s ease}
@@ -270,14 +270,18 @@ section[id],div[id]{scroll-margin-top:68px}
 .x6-dots{display:none}
 @media (max-width:560px){
 .x6-s3-grid,.x6-s4-grid,.x6-s6-grid,.x6-s7-grid{margin-top:32px}
-.x6-dots{display:flex;justify-content:center;margin-top:8px}
-.x6-acc .x6-dots{margin-top:4px;margin-bottom:-8px}
-.x6-dot{width:24px;height:32px;display:inline-flex;align-items:center;justify-content:center;padding:0;border:0;background:transparent;cursor:pointer}
+.x6-dots{display:flex;justify-content:center;margin-top:2px}
+.x6-acc .x6-dots{margin-top:0;margin-bottom:-14px}
+.x6-dot{width:28px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;border:0;background:transparent;cursor:pointer}
 .x6-dot:focus-visible{outline:2px solid #FFFFFF;outline-offset:-4px;border-radius:8px}
 }
-[hidden]{display:none !important}
 @media (min-width:1181px){
 .x6-nav{position:fixed;transition:background-color .4s ease,backdrop-filter .4s ease,border-color .4s ease}
 .x6-nav--solid{background:rgba(5,7,11,.78);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
 section[id],div[id]{scroll-margin-top:76px}
 }
+/* Tap targets: keep nav links, the logo and Compare at 44px tall */
+.x6-links a,.x6-compare{padding:14px 0}
+.x6-nav-inner > a:first-child{min-height:44px}
+/* One consistent keyboard focus ring for links and buttons */
+a:focus-visible,button:focus-visible{outline:2px solid #FFFFFF;outline-offset:3px}

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import {
-  motion,
+  m,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
@@ -44,6 +44,7 @@ export default function Experience() {
   const raw = useTransform(scrollYProgress, [0, 1], [0, 360]);
   const smooth = useSpring(raw, { stiffness: 90, damping: 24, mass: 0.6 });
   useMotionValueEvent(smooth, 'change', (v) => {
+    if (reduce) return; // reduced motion: the ring stays put while scrolling
     const next = Math.round(Math.max(0, Math.min(360, v)));
     setAngle((prev) => (prev === next ? prev : next));
   });
@@ -53,12 +54,17 @@ export default function Experience() {
 
   // Stepped selector: scroll the page to the point in the scene that matches the angle.
   const jumpTo = (deg) => {
+    if (reduce) {
+      // Reduced motion: switch the view in place instead of scrolling the page.
+      setAngle(deg);
+      return;
+    }
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const top = window.scrollY + rect.top;
     const target = top + (deg / 360) * rect.height - window.innerHeight / 2;
-    window.scrollTo({ top: target, behavior: reduce ? 'auto' : 'smooth' });
+    window.scrollTo({ top: target, behavior: 'smooth' });
   };
 
   const activeStep = STEPS.reduce((best, s) => (Math.abs(s - angle) < Math.abs(best - angle) ? s : best), 0);
@@ -66,18 +72,18 @@ export default function Experience() {
   return (
     <section ref={ref} className="x6-s2" id="experience" aria-labelledby="x6-s2-title">
       <div className="x6-s2-bg" aria-hidden="true">
-        <img src="/assets/b281565475d3258cb21552870c4a1db5.jpg" alt="" />
+        <img loading="lazy" decoding="async" src="/assets/b281565475d3258cb21552870c4a1db5.jpg" alt="" />
       </div>
 
-      <motion.div className="x6-s2-head" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }} variants={group}>
-        <motion.div
+      <m.div className="x6-s2-head" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }} variants={group}>
+        <m.div
           className="x6-mono"
           variants={fadeUp}
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, fontSize: 12, fontWeight: 500, letterSpacing: '.18em', color: '#A9B2BF' }}
         >
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: ACCENT, boxShadow: `0 0 10px ${ACCENT}` }} />
           <span>02 / 360 EXPERIENCE</span>
-        </motion.div>
+        </m.div>
         <StaggerText
           as="h2"
           id="x6-s2-title"
@@ -88,12 +94,12 @@ export default function Experience() {
             { t: 'Every Angle.', c: '#7F8B9D' },
           ]}
         />
-        <motion.p variants={fadeUp} style={{ margin: '20px auto 0', maxWidth: 600, fontSize: 18, lineHeight: 1.6, color: '#B3BCC8' }}>
+        <m.p variants={fadeUp} style={{ margin: '20px auto 0', maxWidth: 600, fontSize: 18, lineHeight: 1.6, color: '#B3BCC8' }}>
           Shoot first. Reframe later. X6 captures the entire world around you in stunning 8K 360° video.
-        </motion.p>
-      </motion.div>
+        </m.p>
+      </m.div>
 
-      <motion.div
+      <m.div
         className="x6-stage"
         initial={{ opacity: 0, scale: 0.94 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -106,7 +112,7 @@ export default function Experience() {
               const p = panelStyle(i, angle);
               return (
                 <div key={i} className="x6-panel" style={p.style}>
-                  <img src={data.scenes[i % data.scenes.length]} alt={data.alts[i % data.alts.length]} />
+                  <img loading="lazy" decoding="async" src={data.scenes[i % data.scenes.length]} alt={data.alts[i % data.alts.length]} />
                   <span className="x6-mono" style={{ position: 'absolute', top: 8, left: 9, fontSize: 9, letterSpacing: '.14em', color: '#FFFFFF', textShadow: '0 1px 6px rgba(0,0,0,.85)' }}>{p.label}</span>
                 </div>
               );
@@ -116,7 +122,7 @@ export default function Experience() {
           <div aria-hidden="true" style={{ position: 'absolute', left: -320, top: 140, width: 640, height: 130 }}>
             <div style={{ position: 'absolute', left: 0, top: 0, width: 640, height: 130, borderRadius: '50%', border: `1px solid ${ACCENT}`, opacity: 0.28, boxSizing: 'border-box' }} />
             <div style={{ position: 'absolute', left: 105, top: 24, width: 430, height: 82, borderRadius: '50%', border: `1px solid ${ACCENT}`, opacity: 0.55, boxSizing: 'border-box', boxShadow: `0 0 18px ${ACCENT}` }} />
-            <motion.div
+            <m.div
               style={{ position: 'absolute', left: 190, top: 42, width: 260, height: 46, borderRadius: '50%', border: '1.5px solid #CFE0FF', boxSizing: 'border-box', background: `radial-gradient(ellipse at center,${ACCENT} 0%,rgba(5,7,11,0) 72%)`, boxShadow: `0 0 22px ${ACCENT}, inset 0 0 14px ${ACCENT}` }}
               animate={reduce ? undefined : { opacity: [0.75, 1, 0.75] }}
               transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
@@ -124,16 +130,16 @@ export default function Experience() {
           </div>
 
           <svg aria-hidden="true" width="220" height="96" viewBox="0 0 220 96" fill="none" style={{ position: 'absolute', left: -110, top: -272, overflow: 'visible' }}>
-            <motion.path d="M28 66 A82 18 0 0 1 192 66" stroke="rgba(255,255,255,.35)" strokeWidth="1.5" strokeDasharray="3 5" style={{ strokeDashoffset: dashOffset }} />
+            <m.path d="M28 66 A82 18 0 0 1 192 66" stroke="rgba(255,255,255,.35)" strokeWidth="1.5" strokeDasharray="3 5" style={{ strokeDashoffset: dashOffset }} />
             <path d="M22 68 A88 20 0 0 0 198 68" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
             <path d="M189 59 L199 67 L187 73" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M31 59 L21 67 L33 73" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <text x="110" y="50" textAnchor="middle" fontFamily="Archivo, sans-serif" fontSize="40" fontWeight="600" letterSpacing="-1" fill="#FFFFFF">360°</text>
           </svg>
 
-          <motion.img
+          <m.img loading="lazy" decoding="async"
             className="x6-cam"
-            src="/assets/03c292d03785acdafa287a0fb2d38317.png"
+            src="/assets/03c292d03785acdafa287a0fb2d38317.webp"
             alt="Insta360 X6 front view with its touchscreen"
             style={{ y: reduce ? 0 : camY, z: 1 }}
           />
@@ -147,7 +153,7 @@ export default function Experience() {
               const on = v === activeStep;
               return (
                 <button key={v} type="button" className="x6-step" aria-pressed={on} onClick={() => jumpTo(v)}>
-                  <motion.span
+                  <m.span
                     initial={false}
                     animate={{
                       scale: on ? 1.15 : 1,
@@ -163,7 +169,7 @@ export default function Experience() {
             })}
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       <div className="x6-s2-hud x6-mono" style={{ fontSize: 11, letterSpacing: '.14em', color: '#8B95A3' }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#FFFFFF' }}>
@@ -173,7 +179,7 @@ export default function Experience() {
         <span aria-hidden="true">·</span>
         <span style={{ fontVariantNumeric: 'tabular-nums' }}>YAW {String(angle).padStart(3, '0')}°</span>
         <span className="x6-hud-extra" aria-hidden="true">·</span>
-        <span className="x6-hud-extra">SCROLL TO ROTATE</span>
+        <span className="x6-hud-extra" suppressHydrationWarning>{reduce ? 'PICK AN ANGLE' : 'SCROLL TO ROTATE'}</span>
       </div>
     </section>
   );

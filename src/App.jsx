@@ -1,4 +1,4 @@
-import { MotionConfig } from 'framer-motion';
+import { LazyMotion, MotionConfig, domAnimation } from 'framer-motion';
 import Nav from './sections/Nav.jsx';
 import Hero from './sections/Hero.jsx';
 import Rail from './sections/Rail.jsx';
@@ -14,21 +14,25 @@ import Footer from './sections/Footer.jsx';
 
 export default function App() {
   return (
-    <MotionConfig reducedMotion="user">
-      <div className="x6-root" id="top">
-        <Nav />
-        <Hero />
-        <Rail />
-        <Experience />
-        <Features />
-        <Ai />
-        <Explore />
-        <Create />
-        <Uses />
-        <Specs />
-        <Cta />
-        <Footer />
-      </div>
-    </MotionConfig>
+    <LazyMotion features={domAnimation} strict>
+      <MotionConfig reducedMotion="user">
+        <div className="x6-root" id="top">
+          <Nav />
+          <main>
+            <Hero />
+            <Rail />
+            <Experience />
+            <Features />
+            <Ai />
+            <Explore />
+            <Create />
+            <Uses />
+            <Specs />
+            <Cta />
+          </main>
+          <Footer />
+        </div>
+      </MotionConfig>
+    </LazyMotion>
   );
 }

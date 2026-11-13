@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ACCENT, EASE, StaggerText } from '../motion.jsx';
 
 // Set to true (and point href at the video) once the film is ready.
@@ -30,25 +30,29 @@ export default function Hero() {
   return (
     <section ref={ref} className="x6-hero" id="overview" aria-label="Insta360 X6">
       <div className="x6-photo">
-        <motion.div style={{ position: 'absolute', inset: 0, scale: photoScale, y: photoY }}>
-          <motion.img
+        <m.div style={{ position: 'absolute', inset: 0, scale: photoScale, y: photoY }}>
+          <m.img
             src="/assets/73736d3fa4fcf64860e83e1e9c4dcd78.webp"
+            srcSet="/assets/hero-1080.webp 1080w, /assets/73736d3fa4fcf64860e83e1e9c4dcd78.webp 1440w"
+            sizes="(max-width: 1180px) 120vw, 1440px"
             alt="Two Insta360 X6 cameras, front screen and rear lens, floating above a mountain summit at sunrise"
             width="1440"
             height="760"
-            initial={{ opacity: 0, scale: 1.12 }}
-            animate={{ opacity: 1, scale: 1 }}
+            fetchPriority="high"
+            decoding="async"
+            initial={{ scale: 1.12 }}
+            animate={{ scale: 1 }}
             transition={{ duration: 1.6, ease: EASE }}
             style={{ width: 1440, height: 'auto', aspectRatio: '1440 / 760' }}
           />
-        </motion.div>
+        </m.div>
         <div
           className="x6-scrim"
           style={{ background: 'linear-gradient(90deg, rgba(5,7,11,.72) 0%, rgba(5,7,11,.46) 26%, rgba(5,7,11,.1) 35%, rgba(5,7,11,0) 58%), linear-gradient(0deg,#05070B 0%,rgba(5,7,11,0) 20%) 75%, linear-gradient(180deg,rgba(5,7,11,.55) 0%,rgba(5,7,11,0) 14%)' }}
         />
       </div>
 
-      <motion.div
+      <m.div
         className="x6-hud"
         aria-hidden="true"
         style={{ opacity: hudOpacity }}
@@ -63,7 +67,7 @@ export default function Hero() {
           { bottom: -1, left: -1, borderBottom: '2px solid #FFF', borderLeft: '2px solid #FFF' },
           { bottom: -1, right: -1, borderBottom: '2px solid #FFF', borderRight: '2px solid #FFF' },
         ].map((s, i) => (
-          <motion.div
+          <m.div
             key={i}
             style={{ position: 'absolute', width: 30, height: 30, ...s }}
             initial={{ opacity: 0, scale: 0.4 }}
@@ -87,17 +91,17 @@ export default function Hero() {
               </div>
             ))}
           </div>
-          <motion.div
+          <m.div
             style={{ position: 'absolute', top: -6, left: '50%', width: 2, height: 26, marginLeft: -1, background: ACCENT, boxShadow: `0 0 12px ${ACCENT}` }}
             animate={reduce ? undefined : { x: [-40, 0] }}
             transition={{ duration: 1.6, ease: EASE, delay: 1 }}
           />
         </div>
-      </motion.div>
+      </m.div>
 
-      <motion.div className="x6-content" style={{ y: copyY, opacity: copyOpacity }}>
+      <m.div className="x6-content" style={{ y: copyY, opacity: copyOpacity }}>
         <div className="x6-copy">
-          <motion.div
+          <m.div
             className="x6-mono"
             {...intro(0.15)}
             style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 12, fontSize: 12, fontWeight: 500, letterSpacing: '.18em', color: '#A9B2BF' }}
@@ -106,7 +110,7 @@ export default function Hero() {
             <span>NEW · INSTA360 X6</span>
             <span style={{ width: 40, height: 1, background: 'rgba(255,255,255,.25)' }} />
             <span>360° ACTION CAMERA</span>
-          </motion.div>
+          </m.div>
           <StaggerText
             as="h1"
             className="x6-h1"
@@ -119,11 +123,11 @@ export default function Hero() {
               { t: 'Frame It Later.', c: '#7F8B9D', block: true },
             ]}
           />
-          <motion.p {...intro(0.85)} style={{ margin: '26px 0 0', maxWidth: 500, fontSize: 18, lineHeight: 1.6, color: '#B3BCC8' }}>
+          <m.p {...intro(0.85)} style={{ margin: '26px 0 0', maxWidth: 500, fontSize: 18, lineHeight: 1.6, color: '#B3BCC8' }}>
             The flagship 8K 360° camera. Shoot in every direction at once, then choose the angle, the frame and the moment in the edit.
-          </motion.p>
-          <motion.div className="x6-ctas" {...intro(1)} style={{ marginTop: 40 }}>
-            <motion.a
+          </m.p>
+          <m.div className="x6-ctas" {...intro(1)} style={{ marginTop: 40 }}>
+            <m.a
               href="#buy"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -131,9 +135,9 @@ export default function Hero() {
             >
               <span>Buy Now</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-            </motion.a>
+            </m.a>
             {SHOW_FILM_BUTTON && (
-            <motion.a
+            <m.a
               href={FILM_URL}
               whileHover={{ scale: 1.03, borderColor: 'rgba(255,255,255,.4)' }}
               whileTap={{ scale: 0.97 }}
@@ -143,11 +147,11 @@ export default function Hero() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
               </span>
               Watch the film
-            </motion.a>
+            </m.a>
             )}
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }
